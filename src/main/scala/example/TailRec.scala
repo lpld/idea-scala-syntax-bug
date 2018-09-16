@@ -10,7 +10,7 @@ trait TailRec[A] { self =>
 
 object TailRec {
 
-  @tailrec def run[A, B](io: TailRec[A]): A = io match {
+  @tailrec def run[A](tr: TailRec[A]): A = tr match {
     case Return(a) => a
     case Suspend(r) => r()
     case FlatMap(x, f) => x match {
